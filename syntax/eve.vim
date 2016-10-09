@@ -26,4 +26,6 @@ else
     highlight link eveMarkdownCommentMarkers Comment
 endif
 
+syntax sync fromstart
+
 let b:current_syntax = 'eve'
