@@ -33,6 +33,8 @@ syntax match eveIneq '\v\>'
 syntax match eveEq '\v\='
 syntax match eveEq '\v:'
 
+syntax match eveComment "\v//.*$"
+
 highlight link eveAction Keyword
 highlight link eveConditional Conditional
 highlight link eveString String
@@ -46,5 +48,7 @@ highlight link eveEq Operator
 highlight link eveIneq Operator
 highlight link eveUpdate Operator
 highlight link evePrefixOp Operator
+
+highlight link eveComment Comment
 
 let b:current_syntax = "raweve"
