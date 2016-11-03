@@ -36,6 +36,9 @@ endfunction
 
 function! s:newEveBlock()
   execute "normal! mqO```\<cr>```\<esc>`q"
+  if get(g:, 'eve_fold_empty', 0)
+    execute "normal! zx"
+  endif
 endfunction
 
 function! s:getE2mBlanks()

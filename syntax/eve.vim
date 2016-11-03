@@ -18,8 +18,26 @@ else
     unlet! b:current_syntax
     syntax include @raweve syntax/raweve.vim
 
-    syntax region eveMarkdownComment start="\%^" end="\%$" contains=eveBeginEndZone
-    syntax region eveBeginEndZone start="^```" end="^```" keepend contained contains=@raweve,eveLiterateCommentMarkers
+    syntax region eveMarkdownComment start="\%^" end="\%$" contains=eveEmptyMarkdown,eveBeginEndZone
+    if get(g:, 'eve_fold_code', 0)
+        setlocal foldmethod=syntax
+        syntax region eveBeginEndZone start="^```" end="^```" transparent fold keepend contained contains=@raweve,eveMarkdownCommentMarkers
+    else
+        syntax region eveBeginEndZone start="^```" end="^```" keepend contained contains=@raweve,eveMarkdownCommentMarkers
+    endif
+    if get(g:, 'eve_fold_empty', 0)
+        setlocal foldmethod=expr
+        function! GetEveFold(lnum)
+            if getline(a:lnum) !=# '```'
+                return 0
+            endif
+            if getline(a:lnum - 1) ==# '```' || getline(a:lnum + 1) ==# '```'
+                return 1
+            endif
+            return 0
+        endfunction
+        setlocal foldexpr=GetEveFold(v:lnum)
+    endif
     syntax match eveMarkdownCommentMarkers "^```" contained
 
     highlight link eveMarkdownComment Comment
