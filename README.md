@@ -3,14 +3,15 @@ Eve](http://witheve.com/). It's hosted [on
 Github](https://github.com/frankier/vim-eve). Currently it has the following
 features:
 
- * Syntax hightlighting;
+ * Syntax highlighting;
  * Indentation;
  * Folding;
  * Automatic insertion of code fences.
 
-Only syntax hightlighting and indentation are enabled by default. All other
+Only syntax highlighting and indentation are enabled by default. All other
 features are configurable and opt-in. I highly recommend taking a look at the
-options in this document to make sure you get the most out of this plugin.
+options in this document to mis:issue is:open make sure you get the most out of
+this plugin.
 
 # Installation
 
@@ -38,17 +39,18 @@ This plugin can fold your code in a few ways.
 
 For people, like myself, who don't usually fold code, there is a mode which
 only folds the empty Markdown blocks which tend to appear in Eve programs which
-don't use literate programming. These folds are no indended to be interacted
-with, but are rather just intended to save vertical space. This mode is enabled
+don't use literate programming. These folds are not intended to be interacted
+with, but are rather only intended to save vertical space. This mode is enabled
 by setting `g:eve_fold_empty` to 1.
 
 The other options are to generate folds for code blocks so that only Markdown
 is visible by default. This can be enabled by setting `g:eve_fold_code` to 1.
 
+
 # Automatic insertion of code fences
 
-This plugin can try and insert code fences, `\`\`\``, the characters which
-delimit Eve and markdown blocks automatically for you as you type. Since this
+This plugin can try and insert code fences, the characters which delimit Eve
+and markdown blocks (` ``` `), automatically for you as you type. Since this
 behaviour can be quite invasive, it's opt-in. You can enable it by setting
 `g:eve_insert_code_fence` to 1. There are 3 types of code fence insertions
 possible.
@@ -60,7 +62,7 @@ possible.
 (The last type, when combined with `g:eve_fold_empty` is particularly nice for
 writing non-literate Eve.)
 
-Each type of fence is only inserted if your current line is preceeded by a
+Each type of fence is only inserted if your current line is preceded by a
 certain number of blank lines. An m2e or e2e fence is inserted when you finish
 typing `search`, `bind` or `commit` in a Markdown block or in an Eve block
 respectively. An e2m fence is inserted when you start a line with something
@@ -85,7 +87,7 @@ insertions and are equivalent to:
     let g:eve_e2e_blanks = 2
     let g:eve_e2e_blanks_search = g:eve_e2e_blanks
 
-My personal customisation of these defauls is to set
+My personal customisation of these defaults is to set
 
     let g:eve_e2e_blanks = 1
     let g:eve_e2e_blanks_search = 0
