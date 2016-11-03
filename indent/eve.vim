@@ -28,7 +28,6 @@ function! s:getMarkdownIndent(lnum)
   if a:lnum == 1
     return 0
   endif
-  echom getline(a:lnum - 1)
   if getline(a:lnum - 1) ==# '```'
     return 0
   endif
@@ -37,12 +36,7 @@ function! s:getMarkdownIndent(lnum)
 endfunction
 
 function! GetEveIndent(lnum)
-  echom 'GetEveIndent'
-  echom a:lnum
-  echom VimEve_LineIsEve(a:lnum)
-  echom s:eveToEveCodeFenceJustInserted(a:lnum)
   if ((!VimEve_LineIsEve(a:lnum)) && (!s:eveToEveCodeFenceJustInserted(a:lnum)))
-    echom "Markdown"
     return s:getMarkdownIndent()
   end
   let plnum = prevnonblank(a:lnum - 1)
