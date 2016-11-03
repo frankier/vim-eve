@@ -5,11 +5,12 @@ Contents ~
 
  1. Introduction                                          |README-introduction|
  2. Highlighting                                          |README-highlighting|
- 3. Folds                                                        |README-folds|
- 4. Automatic insertion of code fences |README-automatic-insertion-of-code-fences|
- 5. Contributing                                          |README-contributing|
- 6. License                                                    |README-license|
- 7. References                                              |README-references|
+ 3. Indentation                                            |README-indentation|
+ 4. Folds                                                        |README-folds|
+ 5. Automatic insertion of code fences |README-automatic-insertion-of-code-fences|
+ 6. Contributing                                          |README-contributing|
+ 7. License                                                    |README-license|
+ 8. References                                              |README-references|
 
 ===============================================================================
                                                           *README-introduction*
@@ -46,6 +47,13 @@ default because it provides poor contrast between the comments and the code.
 
 If someone knows a good way to get the best of both worlds then I'm interested.
 See the issues on Github.
+
+===============================================================================
+                                                           *README-indentation*
+Indentation ~
+
+This plugin comes with an indentation definition. It will also indent Markdown
+lists if you have plasticboy/vim-markdown [4] installed.
 
 ===============================================================================
                                                                  *README-folds*
@@ -136,5 +144,6 @@ References ~
 [1] http://witheve.com/
 [2] https://github.com/frankier/vim-eve
 [3] https://github.com/junegunn/vim-plug
+[4] https://github.com/plasticboy/vim-markdown
 
 vim: ft=help
