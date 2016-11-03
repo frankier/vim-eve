@@ -1,9 +1,7 @@
-# Vim syntax highlighting and more for use [with Eve](http://witheve.com/).
-
-This is a plugin to try and make writing programs [with
-Eve](http://witheve.com/) more comfortable in (neo)vim. It's currently hosted
-[on Github](https://github.com/frankier/vim-eve). Currently it has the
-following features:
+This (Neo)Vim plugin provides syntax highlighting and more for use [with
+Eve](http://witheve.com/). It's hosted [on
+Github](https://github.com/frankier/vim-eve). Currently it has the following
+features:
 
  * Syntax hightlighting;
  * Indentation;
@@ -14,7 +12,7 @@ Only syntax hightlighting and indentation are enabled by default. All other
 features are configurable and opt-in. I highly recommend taking a look at the
 options in this document to make sure you get the most out of this plugin.
 
-## Installation
+# Installation
 
 It's easiest if you use a plugin manager. My favourite is
 [vim-plug](https://github.com/junegunn/vim-plug). If you're also using
@@ -24,7 +22,7 @@ vim-plug, just add:
 
 to ~/.vimrc or ~/.config/nvim/init.vim, restart (neo)vim and run :PlugInstall
 
-## Highlighting
+# Highlighting
 
 There is one option for configuring highlighting currently:
 `g:eve_highlight_markdown`. By default Markdown sections will be highlighted as
@@ -34,7 +32,7 @@ default because it provides poor contrast between the comments and the code.
 If someone knows a good way to get the best of both worlds then I'm interested.
 See the issues on Github.
 
-## Folds
+# Folds
 
 This plugin can fold your code in a few ways.
 
@@ -47,7 +45,7 @@ by setting `g:eve_fold_empty` to 1.
 The other options are to generate folds for code blocks so that only Markdown
 is visible by default. This can be enabled by setting `g:eve_fold_code` to 1.
 
-## Automatic insertion of code fences
+# Automatic insertion of code fences
 
 This plugin can try and insert code fences, `\`\`\``, the characters which
 delimit Eve and markdown blocks automatically for you as you type. Since this
@@ -95,7 +93,7 @@ My personal customisation of these defauls is to set
 You can also disable a particular type of fence insertion altogether by setting
 `g:eve_TYPE_blanks = -1`
 
-## Contributing
+# Contributing
 
 This is my first Vim plugin and may be rough around the edges. If you run into
 any problems, please file an issue. Suggestions and advice in the issues is
@@ -103,18 +101,7 @@ also humbly solicited, especially if you have any experience with vimscript and
 can see better ways of doing things. If you want to fix any problems or add new
 features, pull requests are very welcome.
 
-## License
+# License
 
-Copyright 2016 Frankie Robertson
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+Copyright © Frankie Robertson. Dual licensed under the Vim and Apache 2
+licenses.
