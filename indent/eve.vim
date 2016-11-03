@@ -1,5 +1,8 @@
 " Indentation
 
+" Try and load GetMarkdownIndent
+runtime! indent/markdown.vim
+
 setlocal nolisp " Make sure lisp indenting doesn't supersede us
 setlocal autoindent " indentexpr isn't much help otherwise
 
@@ -9,27 +12,28 @@ setlocal indentkeys+=[,],=,<:>,<space>,=search,=match,=commit,=bind,`
 function! s:eveToEveCodeFenceJustInserted(lnum)
   " In the case we've just automatically inserted an Eve => Eve code fence,
   " hightlighting has not yet had a chance to run
-  return (a:lnum >= 5) && \
-      VimEve_LineIsEve(a:lnum - 4) && \
-      VimEve_LineIsFence(getline(a:lnum - 3)) && \
-      VimEve_LineIsFence(getline(a:lnum - 2))
+  return ((a:lnum >= 5) &&
+\     VimEve_LineIsEve(a:lnum - 4) &&
+\     VimEve_LineIsFence(getline(a:lnum - 3)) &&
+\     VimEve_LineIsFence(getline(a:lnum - 2)))
 endfunction
 
 function! s:getMarkdownIndent(lnum)
-  if a:lnum == 1
+  if (a:lnum == 1 ||
+\     VimEve_LineIsFence(getline(a:lnum)) ||
+\     VimEve_LineIsFence(getline(a:lnum - 1)))
     return 0
   endif
-  if VimEve_LineIsFence(getline(a:lnum)) || \
-      VimEve_LineIsFence(getline(a:lnum - 1))
-    return 0
+  if exists('*GetMarkdownIndent')
+    return GetMarkdownIndent()
+  else
+    return "="
   endif
-  " TODO: Handle (nested) lists. Can another Markdown plugin be reused?
-  return -1
 endfunction
 
 function! GetEveIndent(lnum)
-  if ((!VimEve_LineIsEve(a:lnum)) && \
-      (!s:eveToEveCodeFenceJustInserted(a:lnum)))
+  if ((!VimEve_LineIsEve(a:lnum)) &&
+\     (!s:eveToEveCodeFenceJustInserted(a:lnum)))
     return s:getMarkdownIndent(a:lnum)
   end
   let plnum = prevnonblank(a:lnum - 1)

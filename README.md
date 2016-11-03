@@ -33,6 +33,13 @@ default because it provides poor contrast between the comments and the code.
 If someone knows a good way to get the best of both worlds then I'm interested.
 See the issues on Github.
 
+# Indentation
+
+This plugin comes with an indentation definition. It will also indent Markdown
+lists if you have
+[plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
+installed.
+
 # Folds
 
 This plugin can fold your code in a few ways.

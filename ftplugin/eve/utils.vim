@@ -1,7 +1,7 @@
 function! VimEve_LineIsEve(lnum)
   let stack = synstack(a:lnum, 1)
   let isEve = len(stack) >= 2 && synIDattr(stack[1], "name") == "eveBeginEndZone"
-  let isFence = getline(a:lnum) =~# '```'
+  let isFence = VimEve_LineIsFence(getline(a:lnum))
   return isEve && !isFence
 endfunction
 
