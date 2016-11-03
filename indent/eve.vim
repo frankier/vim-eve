@@ -7,28 +7,19 @@ setlocal indentexpr=GetEveIndent(v:lnum)
 setlocal indentkeys+=[,],=,<:>,<space>,=search,=match,=commit,=bind
 
 function! s:eveToEveCodeFenceJustInserted(lnum)
-  " In the case we've just automatically inserted a code fence, hightlighting
-  " has not yet had a chance to run
-  if (a:lnum < 5)
-    return 0
-  endif
-  if !VimEve_LineIsEve(a:lnum - 4)
-    return 0
-  endif
-  if getline(a:lnum - 3) !=# '```'
-    return 0
-  endif
-  if getline(a:lnum - 2) !=# '```'
-    return 0
-  endif
-  return 1
+  " In the case we've just automatically inserted an Eve => Eve code fence,
+  " hightlighting has not yet had a chance to run
+  return (a:lnum >= 5) && \
+      VimEve_LineIsEve(a:lnum - 4) && \
+      VimEve_LineIsFence(getline(a:lnum - 3)) && \
+      VimEve_LineIsFence(getline(a:lnum - 2))
 endfunction
 
 function! s:getMarkdownIndent(lnum)
   if a:lnum == 1
     return 0
   endif
-  if getline(a:lnum - 1) ==# '```'
+  if VimEve_LineIsFence(getline(a:lnum - 1))
     return 0
   endif
   " TODO: Handle (nested) lists. Can another Markdown plugin be reused?
@@ -45,7 +36,9 @@ function! GetEveIndent(lnum)
     return 0
   end
   let curline = getline(a:lnum)
-  if VimEve_LineIsAction(curline)
+  if VimEve_LineIsFence(curline)
+    return 0
+  elseif VimEve_LineIsAction(curline)
     " Indent at same level as previous action
     while plnum >= 1
       let prevline = getline(plnum)

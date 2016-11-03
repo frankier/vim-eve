@@ -8,3 +8,7 @@ endfunction
 function! VimEve_LineIsAction(line)
   return a:line =~# '\v^\s*(search|match|bind|commit)(\s+\@\S+)*\s*$'
 endfunction
+
+function! VimEve_LineIsFence(line)
+  return a:line =~# '\v^\s*```\s*$'
+endfunction
