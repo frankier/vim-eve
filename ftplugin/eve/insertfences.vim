@@ -92,7 +92,6 @@ function! s:maybeInsertCodeFence()
         return
       endif
       " Eve block => new Eve block
-      echom "Eve block => new Eve block"
       call s:deletePrevLines(numBlankLines)
       call s:newEveBlock()
     elseif curline =~# '\v ?\S+\s'
@@ -101,7 +100,6 @@ function! s:maybeInsertCodeFence()
         return
       endif
       " Eve block => Markdown block
-      echom "Eve block => new Markdown block"
       call s:deletePrevLines(numBlankLines)
       call s:changeEveMarkdownBlock()
     endif
@@ -111,7 +109,6 @@ function! s:maybeInsertCodeFence()
       return
     endif
     " Markdown block => Eve block
-    echom "Markdown block => new Eve block"
     call s:deletePrevLines(numBlankLines)
     call s:changeEveMarkdownBlock()
   endif
