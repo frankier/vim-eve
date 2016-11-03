@@ -4,7 +4,7 @@ setlocal nolisp " Make sure lisp indenting doesn't supersede us
 setlocal autoindent " indentexpr isn't much help otherwise
 
 setlocal indentexpr=GetEveIndent(v:lnum)
-setlocal indentkeys+=[,],=,<:>,<space>,=search,=match,=commit,=bind
+setlocal indentkeys+=[,],=,<:>,<space>,=search,=match,=commit,=bind,`
 
 function! s:eveToEveCodeFenceJustInserted(lnum)
   " In the case we've just automatically inserted an Eve => Eve code fence,
@@ -19,7 +19,8 @@ function! s:getMarkdownIndent(lnum)
   if a:lnum == 1
     return 0
   endif
-  if VimEve_LineIsFence(getline(a:lnum - 1))
+  if VimEve_LineIsFence(getline(a:lnum)) || \
+      VimEve_LineIsFence(getline(a:lnum - 1))
     return 0
   endif
   " TODO: Handle (nested) lists. Can another Markdown plugin be reused?
@@ -27,8 +28,9 @@ function! s:getMarkdownIndent(lnum)
 endfunction
 
 function! GetEveIndent(lnum)
-  if ((!VimEve_LineIsEve(a:lnum)) && (!s:eveToEveCodeFenceJustInserted(a:lnum)))
-    return s:getMarkdownIndent()
+  if ((!VimEve_LineIsEve(a:lnum)) && \
+      (!s:eveToEveCodeFenceJustInserted(a:lnum)))
+    return s:getMarkdownIndent(a:lnum)
   end
   let plnum = prevnonblank(a:lnum - 1)
   if plnum == 0
