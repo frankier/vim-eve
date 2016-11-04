@@ -10,5 +10,5 @@ function! VimEve_LineIsAction(line)
 endfunction
 
 function! VimEve_LineIsFence(line)
-  return a:line =~# '\v^\s*```\s*$'
+  return a:line =~# '\v^\s*(```|\~\~\~)\s*$'
 endfunction
